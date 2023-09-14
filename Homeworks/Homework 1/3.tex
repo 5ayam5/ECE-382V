@@ -1,0 +1,29 @@
+Compilers translate a sequence of high-level instructions (program) into a functionally equivalent sequence of low-level native gates (assembly). Qubit mapping and routing are two fundamental steps involved in this process.
+
+\tcbline{}
+
+\begin{question}
+    How does the quality of initial qubit mapping or allocation impact the performance of the quantum computer for a given application?
+\end{question}
+\textbf{Answer.} The initial qubit mapping determines the relative positions of the qubits. This is crucial to the routing decisions since qubits have limited connectivity, usually in a grid-like layout. Thus, if a pair of qubits that have a lot of 2-qubit gates between then are located far away, we would require a larger number of swap operations than if they were located close by.
+
+\tcbline{}
+
+\begin{question}
+    How does the routing policy impact the quality of the solutions for a given application?
+\end{question}
+\textbf{Answer.} A bad routing policy would require more swap operations for each two-qubit (or multi-qubit) gate to place the associated qubits next to each other. On the other hand, a good routing policy would reduce the number of swap operations required significantly thus improving the quantum program run time. This would also reduce the decoherence error since a reduced execution time between measurements would reduce the effects of decoherence. Additionally, lesser gates also implies lesser accumulated errors thus increasing the program accuracy.
+
+\tcbline{}
+
+\begin{question}
+    There exists numerous routing policies in the compilation space. Why? Which would you like to opt for in order to run any given program of your choice?
+\end{question}
+\textbf{Answer.} % @TODO: complete this
+
+\tcbline{}
+
+\begin{question}
+    What are the trade-offs involved in routing overheads and device topology?
+\end{question}
+\textbf{Answer.} % @TODO: complete this

@@ -155,8 +155,7 @@
 \newtheorem{claim}[theorem]{Claim}
 \newtheorem{fact}[theorem]{Fact}
 \newtheorem{definition}[theorem]{Definition}
-\newtheorem{answer}{Answer}
-\newtheorem{question}{Question}
+\newtheorem*{question}{Question}
 
 \newtcolorbox{solution}[2][]{every float=\centering,breakable,enhanced,adjusted title={#2},colback=codegray,colframe=codegray!50!black}
 
@@ -178,9 +177,23 @@
 \tableofcontents
 
 \section{Question 1}
-\input{1}
+\begin{solution}{Error Model}\label{ques:1}
+        \input{1}
+\end{solution}
 
 \section{Question 2}
-\input{2}
+\begin{solution}{System Calibrations}\label{ques:2}
+        \input{2}
+\end{solution}
+
+\section{Question 3}
+\begin{solution}{Compilation: Qubit Mapping and Routing}\label{ques:3}
+        \input{3}
+\end{solution}
+
+\section{Question 4}
+\begin{solution}{Pulse Compilation}\label{ques:4}
+        \input{4}
+\end{solution}
 
 \end{document}

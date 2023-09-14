@@ -1,73 +1,66 @@
-\begin{solution}{Error Model}\label{ques:1}
-    The impact of errors can be analytically modeled by using various parameters accounting for the failure probabilities corresponding to different types of errors. Let us estimate the probability of successfully executing a $3$-qubit bell-pair circuit.
+The impact of errors can be analytically modeled by using various parameters accounting for the failure probabilities corresponding to different types of errors. Let us estimate the probability of successfully executing a $3$-qubit bell-pair circuit.
 
-    \begin{question}
-        Estimate the error-rate assuming only gate and measurement errors occurs.
-    \end{question}
-    \begin{answer}
-        The circuit for a $3$-qubit bell-pair is given by,
-        \begin{center}
-            \begin{quantikz}
-                \lstick{$\ket{0}$} & \gate{H} & \ctrl{1} & \ctrl{2} & \meter{} & \qw\\
-                \lstick{$\ket{0}$} & \qw & \targ{} & \qw & \meter{} & \qw\\
-                \lstick{$\ket{0}$} & \qw & \qw & \targ{} & \meter{} & \qw
-            \end{quantikz}
-        \end{center}
-        Let the probability of a $\mathsf{H}$ gate be $p_H$, the probability of error of a $\mathsf{CNOT}$ gate be $p_{CNOT}$ and the probability of error of a measurement be $p_M$. Then, the probability of successfully executing a $3$-qubit bell-pair circuit is given by,
-        \begin{equation}
-                P_0 = (1-p_H)\cdot(1-p_{CNOT})^2\cdot(1-p_M)^3
-        \end{equation}
-        Note that we have an inequality since the errors in the gates and the measurements might cancel out.
-    \end{answer}
+\tcbline{}
 
-    \tcbline
+\begin{question}
+    Estimate the error-rate assuming only gate and measurement errors occurs.
+\end{question}
+\textbf{Answer.} The circuit for a $3$-qubit bell-pair is given by,
+\begin{center}
+    \begin{quantikz}
+        \lstick{$\ket{0}$} & \gate{H} & \ctrl{1} & \ctrl{2} & \meter{} & \qw\\
+        \lstick{$\ket{0}$} & \qw & \targ{} & \qw & \meter{} & \qw\\
+        \lstick{$\ket{0}$} & \qw & \qw & \targ{} & \meter{} & \qw
+    \end{quantikz}
+\end{center}
+Let the probability of a $\mathsf{H}$ gate be $p_H$, the probability of error of a $\mathsf{CNOT}$ gate be $p_{CNOT}$ and the probability of error of a measurement be $p_M$. Then, the probability of successfully executing a $3$-qubit bell-pair circuit is given by,
+\begin{equation}
+        P_0 = (1-p_H)\cdot(1-p_{CNOT})^2\cdot(1-p_M)^3
+\end{equation}
+Note that we have an inequality since the errors in the gates and the measurements might cancel out.
 
-    \begin{question}
-        Now append the error-model to include decoherence. How does the probability of successful circuit execution change?
-    \end{question}
-    \begin{answer}
-        Let the amplitude decoherence time of qubit $i$ be $T_{1i}$. Also assume that the time it takes for the Hadamard gate is $T_H$, the time it takes for the $\mathsf{CNOT}$ gate is $T_{CNOT}$ and the time it takes to measure the qubit is $T_M$. Then, the probability of successfully executing a $3$-qubit bell-pair circuit is given by,
-        \begin{equation}
-            \begin{split}
-                P_1 = &P_0\cdot P_{decoherence,0}\cdot P_{decoherence,1}\cdot P_{decoherence,1}\\
-                = &P_0\cdot \left(1 - \exp\left(-\frac{T_H + 2\cdot T_{CNOT} + T_M}{T_{10}}\right)\right)\\
-                & \cdot \left(1 - \exp\left(-\frac{T_H + 2\cdot T_{CNOT} + T_M}{T_{11}}\right)\right)\cdot \left(1 - \exp\left(-\frac{T_H + 2\cdot T_{CNOT} + T_M}{T_{12}}\right)\right)\\
-                \implies P_1 = & (1-p_H)\cdot(1-p_{CNOT})^2\cdot(1-p_M)^3\\
-                & \cdot \left(1 - \exp\left(-\frac{T_H + 2\cdot T_{CNOT} + T_M}{T_{10}}\right)\right)\cdot \left(1 - \exp\left(-\frac{T_H + 2\cdot T_{CNOT} + T_M}{T_{11}}\right)\right)\cdot\\
-                & \cdot \left(1 - \exp\left(-\frac{T_H + 2\cdot T_{CNOT} + T_M}{T_{12}}\right)\right)
-            \end{split}
-        \end{equation}
-    \end{answer}
+\tcbline{}
 
-    \tcbline
+\begin{question}
+    Now append the error-model to include decoherence. How does the probability of successful circuit execution change?
+\end{question}
+\textbf{Answer.} Let the amplitude decoherence time of qubit $i$ be $T_{1i}$. Also assume that the time it takes for the Hadamard gate is $T_H$, the time it takes for the $\mathsf{CNOT}$ gate is $T_{CNOT}$ and the time it takes to measure the qubit is $T_M$. Then, the probability of successfully executing a $3$-qubit bell-pair circuit is given by,
+\begin{equation}
+    \begin{split}
+        P_1 = &P_0\cdot P_{decoherence,0}\cdot P_{decoherence,1}\cdot P_{decoherence,1}\\
+        = &P_0\cdot \left(1 - \exp\left(-\frac{T_H + 2\cdot T_{CNOT} + T_M}{T_{10}}\right)\right)\\
+        & \cdot \left(1 - \exp\left(-\frac{T_H + 2\cdot T_{CNOT} + T_M}{T_{11}}\right)\right)\cdot \left(1 - \exp\left(-\frac{T_H + 2\cdot T_{CNOT} + T_M}{T_{12}}\right)\right)\\
+        \implies P_1 = & (1-p_H)\cdot(1-p_{CNOT})^2\cdot(1-p_M)^3\\
+        & \cdot \left(1 - \exp\left(-\frac{T_H + 2\cdot T_{CNOT} + T_M}{T_{10}}\right)\right)\cdot \left(1 - \exp\left(-\frac{T_H + 2\cdot T_{CNOT} + T_M}{T_{11}}\right)\right)\cdot\\
+        & \cdot \left(1 - \exp\left(-\frac{T_H + 2\cdot T_{CNOT} + T_M}{T_{12}}\right)\right)
+    \end{split}
+\end{equation}
 
-    \begin{question}
-        How can you further improve the accuracy of this error model? Estimate the probability of success by including at least one additional parameter.
-    \end{question}
-    \begin{answer}
-        Some of the simplifying assumptions made in the above model are:
-        \begin{enumerate}
-            \item The errors are assumed to be additive. However, in reality, the errors from different gates and decoherences might cancel out and hence we might have a higher probability of success.
-            \item \label{item:removed_assumption} We have assumed that the probability of error of both $\mathsf{CNOT}$ gates is the same. However, in reality, the probability of error of the $\mathsf{CNOT}$ gate might be different for different pairs of qubits.
-            \item We have also assumed that the total time it takes to measure each qubit and the time it takes to execute each $\mathsf{CNOT}$ gate is the same. However, in reality, the times will be different and hence the decoherence probabilities will be different.
-        \end{enumerate}
+\tcbline{}
 
-        For this part, we will get rid of the simplifying assumption~\ref{item:removed_assumption}. The resultant error model becomes,
-        \begin{equation}
-            \begin{split}
-            P_2 &= (1-p_H)\cdot(1-p_{CNOT(0, 1)})\cdot(1-p_{CNOT(0,2)})\cdot(1-p_M)^3\\
-            &\cdot \left(1 - \exp\left(-\frac{T_H + 2\cdot T_{CNOT} + T_M}{T_{10}}\right)\right)\cdot \left(1 - \exp\left(-\frac{T_H + 2\cdot T_{CNOT} + T_M}{T_{11}}\right)\right)\cdot\\
-                & \cdot \left(1 - \exp\left(-\frac{T_H + 2\cdot T_{CNOT} + T_M}{T_{12}}\right)\right) 
-            \end{split}
-        \end{equation}
-    \end{answer}
+\begin{question}
+    How can you further improve the accuracy of this error model? Estimate the probability of success by including at least one additional parameter.
+\end{question}
+\textbf{Answer.} Some of the simplifying assumptions made in the above model are:
+\begin{enumerate}
+    \item The errors are assumed to be additive. However, in reality, the errors from different gates and decoherences might cancel out and hence we might have a higher probability of success.
+    \item \label{item:removed_assumption} We have assumed that the probability of error of both $\mathsf{CNOT}$ gates is the same. However, in reality, the probability of error of the $\mathsf{CNOT}$ gate might be different for different pairs of qubits.
+    \item We have also assumed that the total time it takes to measure each qubit and the time it takes to execute each $\mathsf{CNOT}$ gate is the same. However, in reality, the times will be different and hence the decoherence probabilities will be different.
+\end{enumerate}
 
-    \tcbline
+For this part, we will get rid of the simplifying assumption~\ref{item:removed_assumption}. The resultant error model becomes,
+\begin{equation}
+    \begin{split}
+    P_2 &= (1-p_H)\cdot(1-p_{CNOT(0, 1)})\cdot(1-p_{CNOT(0,2)})\cdot(1-p_M)^3\\
+    &\cdot \left(1 - \exp\left(-\frac{T_H + 2\cdot T_{CNOT} + T_M}{T_{10}}\right)\right)\cdot \left(1 - \exp\left(-\frac{T_H + 2\cdot T_{CNOT} + T_M}{T_{11}}\right)\right)\cdot\\
+        & \cdot \left(1 - \exp\left(-\frac{T_H + 2\cdot T_{CNOT} + T_M}{T_{12}}\right)\right) 
+    \end{split}
+\end{equation}
 
-    \begin{question}
-        What happens to the complexity of the error-model when you increase the circuit size beyond three qubits?
-    \end{question}
-    \begin{answer}
-        As we increase the circuit size, the number of gates and measurements increase as $O(\mathsf{poly}(n))$, where $n$ is the number of qubits. We can also have exponentially many combinations of multi-qubit gates and measurements, therefore the the error model can have $O(\mathsf{poly}(n))$ different terms. Thus, the probability of success will be negligible since it will be of the order of $O(\left(\max{p}\right)^{\mathsf{poly}(n)})$.
-    \end{answer}
-\end{solution}
+\tcbline{}
+
+\begin{question}
+    What happens to the complexity of the error-model when you increase the circuit size beyond three qubits?
+\end{question}
+\textbf{Answer.} As we increase the circuit size, the number of gates and measurements increase as $O(\mathsf{poly}(n))$, where $n$ is the number of qubits. We can also have exponentially many combinations of multi-qubit gates and measurements, therefore the the error model can have $O(\mathsf{poly}(n))$ different terms. Thus, the probability of success will be negligible since it will be of the order of $O(\left(\max{p}\right)^{\mathsf{poly}(n)})$.
+% @TODO: plug in the numbers for all the probability estimates

@@ -1,0 +1,38 @@
+Quantum systems are frequently calibrated to enable high fidelity quantum gate and measurement operations.
+
+\tcbline{}
+
+\begin{question}
+    Why is system calibration non-trivial?
+\end{question}
+\textbf{Answer.} System calibration is a non-trivial problem due to a lot of reasons:
+\begin{enumerate}
+    \item The quantum systems are very sensitive to the environment and hence the calibration needs to be done frequently.
+    \item Each qubit is subjected to different operations and measurements and is surrounded by different neighbours. As a result, even if we want to apply the same gate to two different qubits, we will have to calibrate the gate differently for both the qubits.
+    \item For multi-qubit gates, we need to take into account the parameters for all the qubits involves in the gate. Therefore, the problem of finding the optimal gate parameters becomes exponentially hard as the number of qubits involve increase (since each qubit has multiple parameters involved, such as neighbours, idle gate frequencies, etc).
+\end{enumerate}
+
+\tcbline{}
+
+\begin{question}
+    What are the trade-offs involved in too frequent system calibrations and infrequent system calibrations?
+\end{question}
+\textbf{Answer.}
+
+\textbf{Too frequent system calibrations:} If we calibrate the system too frequently, then we will not be able to perform any useful computation on the system. This is because the system will be in the calibration mode for most of the time and hence we will not be able to perform any useful computation on the system.
+
+\textbf{Infrequent system calibrations:} If we do not calibrate the system frequently, then the system errors will continue to accumulate and hence the results will not be accurate. This would make the computation useless.
+
+\tcbline{}
+
+\begin{question}
+    Most device providers opt for localized recalibrations as opposed to full-system calibrations. Why? How does this impact the “performance” of the system?
+\end{question}
+\textbf{Answer.} A full-system recalibration will be computationally much heavier than a localized recalibration. Additionally, we will have to perform a full-system recalibration at the required frequency of the most error-prone regions. This would lead to useless computation for those qubits that do not require calibrations that frequently. Performing a calibration taking all qubits (and their neighbours) into account would also lead to a more complex calibration process since it would consider a larger set of parameters. Instead, a localized calibration process will be computationally more efficient even if we consider the computaiton done per qubit (since we assume that the parameters of the qubits outside of the neighbourhood are fixed).
+
+\tcbline{}
+
+\begin{question}
+    In the class, we discussed the snake optimizer routine for performing large-scale system calibrations. What are the potential drawbacks of this technique? How do you think this can be improved?
+\end{question}
+\textbf{Answer.} The snake optimizer routine is a greedy algorithm and hence it might get stuck in a local minima. This can be improved by using a more sophisticated optimization algorithm such as gradient descent. Additionally, we can also use a more sophisticated cost function that takes into account the errors of the neighbouring qubits as well. This would lead to a more accurate calibration process. % @TODO: actually write the correct answer
