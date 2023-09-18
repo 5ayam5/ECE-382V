@@ -5,25 +5,25 @@ Most quantum algorithms can be described with circuit operations alone. When we 
 \begin{question}
     What are the potential advantages of this approach?
 \end{question}
-\textbf{Answer.} The advantage to this approach is that we can reduce the program execution time significantly which will also lead to reduced errors. This also increases the scope of optimization since we have a larger set of pulses to choose from than we would have if we used the basis set.
+\textbf{Answer.} The advantage to this approach is that we can reduce the program execution time significantly which will also lead to reduced errors. This also increases the scope of optimization since we have a larger set of pulses to choose from than we would have if we just used the basis set.
 
 \tcbline{}
 
 \begin{question}
     What are the key limitations in this approach?
 \end{question}
-\textbf{Answer.} The drawback of this approach is that the compiler code will become more complex and it will take more time to execute. Additionally, if we have more pulses that we can use, this can lead to difficulties in the calibration of the system since we will have to choose more pulses from the same frequency band and thus the problem of choosing wide enough pulses becomes harder.
+\textbf{Answer.} The drawback of this approach is that the compiler code will become more complex, and it will take more time to execute. Additionally, if we have a larger set of pulses to implement, this can lead to difficulties in the calibration of the system since we will have to choose more pulses from the same frequency band and thus the problem of choosing distant enough pulses becomes harder.
 
 \tcbline{}
 
 \begin{question}
     How do you think a programmer can best exploit this trade-off to their advantage?
 \end{question}
-\textbf{Answer.} A programmer can inherit the flexibility of the pulses while not increasing the complexity of the compiler and the calibration algorithm by choosing different sets of pulses for different qubits. Not all qubits need to be implemented using pulse compilation. For example, the programmer can only choose the qubits that have a lot of swap operations to be implemented using pulse compilation and the other qubits can be implemented using the basis set. This will reduce the complexity of the compiler and the calibration algorithm while still giving the programmer the flexibility of the pulses.
+\textbf{Answer.} A programmer can inherit the flexibility of the pulses while not increasing the complexity of the compiler and the calibration algorithm by choosing different sets of pulses for different qubits. Not all qubits need to be implemented using pulse compilation and thus the programmer can exploit this fact to their advantage by only increasing the complexity of compilation for the hotspots, i.e., the qubits that are very active. For example, the programmer can only choose the qubits that have a lot of swap operations to be implemented using pulse compilation and the other qubits can be implemented using the basis set. This will reduce the complexity of the compiler and the calibration algorithm while still giving the programmer the flexibility of the pulses.
 
 \tcbline{}
 
 \begin{question}
     Can you transfer the pulse schedule from one machine to another?
 \end{question}
-\textbf{Answer.} % @TODO
+\textbf{Answer.} No, we cannot transfer the pulse schedule from one machine to another since the pulse schedule is dependent on the machine and the calibration of the qubits. Different machines will have different ways of implementing the same gates and hence the same sequence of pulses will not implement the same set of gates. Even if we have the same architecture of both machines, we still cannot transfer the schedule since the qubits for both the machines will have different calibration parameters and the same pulse schedule won't work for both the machines. Additionally, a system that has been compiled at the device level requires device level information and hence exporting them after optimization is not possible at all.

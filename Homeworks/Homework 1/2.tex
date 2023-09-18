@@ -9,7 +9,8 @@ Quantum systems are frequently calibrated to enable high fidelity quantum gate a
 \begin{enumerate}
     \item The quantum systems are very sensitive to the environment and hence the calibration needs to be done frequently.
     \item Each qubit is subjected to different operations and measurements and is surrounded by different neighbours. As a result, even if we want to apply the same gate to two different qubits, we will have to calibrate the gate differently for both the qubits.
-    \item For multi-qubit gates, we need to take into account the parameters for all the qubits involves in the gate. Therefore, the problem of finding the optimal gate parameters becomes exponentially hard as the number of qubits involve increase (since each qubit has multiple parameters involved, such as neighbours, idle gate frequencies, etc).
+    \item For multi-qubit gates, we need to take into account the parameters for all the qubits involves in the gate. Therefore, the problem of finding the optimal gate parameters becomes exponentially hard as the number of qubits involve increase (since each qubit has multiple parameters involved, such as neighbours, idle gate frequencies, etc.).
+    \item When we calibrate the system, the qubits involved in the calibration go down and hence this stalls the quantum operations and slows down the computation. This not only affects the qubits that are being calibrated but also the qubits that have multi-qubit gates with these qubits under calibration.
 \end{enumerate}
 
 \tcbline{}
@@ -19,20 +20,21 @@ Quantum systems are frequently calibrated to enable high fidelity quantum gate a
 \end{question}
 \textbf{Answer.}
 
-\textbf{Too frequent system calibrations:} If we calibrate the system too frequently, then we will not be able to perform any useful computation on the system. This is because the system will be in the calibration mode for most of the time and hence we will not be able to perform any useful computation on the system.
+\textbf{Too frequent system calibrations:} If we calibrate the system too frequently, then we will not be able to perform any useful computation on the system. This is because the system will be in the calibration mode for most of the time and hence we will not be able to perform any useful computation on the system. This can also potentially increase the decoherence errors of the system.
 
-\textbf{Infrequent system calibrations:} If we do not calibrate the system frequently, then the system errors will continue to accumulate and hence the results will not be accurate. This would make the computation useless.
+\textbf{Infrequent system calibrations:} If we do not calibrate the system frequently, then the system errors will continue to accumulate and compound thus rendering the results highly inaccurate. This would make the computation useless.
 
 \tcbline{}
 
 \begin{question}
     Most device providers opt for localized recalibrations as opposed to full-system calibrations. Why? How does this impact the “performance” of the system?
 \end{question}
-\textbf{Answer.} A full-system recalibration will be computationally much heavier than a localized recalibration. Additionally, we will have to perform a full-system recalibration at the required frequency of the most error-prone regions. This would lead to useless computation for those qubits that do not require calibrations that frequently. Performing a calibration taking all qubits (and their neighbours) into account would also lead to a more complex calibration process since it would consider a larger set of parameters. Instead, a localized calibration process will be computationally more efficient even if we consider the computaiton done per qubit (since we assume that the parameters of the qubits outside of the neighbourhood are fixed).
+\textbf{Answer.} A full-system recalibration will be computationally much heavier than a localized recalibration. Additionally, we will have to perform a full-system recalibration at the required frequency of the most error-prone regions. This would lead to useless computation for those qubits that do not require calibrations that frequently. Performing a calibration taking all qubits (and their neighbours) into account would also lead to a more complex calibration process since it would consider a larger set of parameters. Instead, a localized calibration process will be computationally more efficient even if we consider the computation done per qubit (since we assume that the parameters of the qubits outside the neighbourhood are fixed). Localized calibration also allows for computation to take place parallelly elsewhere in the system and this leads to reduced system time and by extension, reduced decoherence errors.
 
 \tcbline{}
 
 \begin{question}
     In the class, we discussed the snake optimizer routine for performing large-scale system calibrations. What are the potential drawbacks of this technique? How do you think this can be improved?
 \end{question}
-\textbf{Answer.} The snake optimizer routine is a greedy algorithm and hence it might get stuck in a local minima. This can be improved by using a more sophisticated optimization algorithm such as gradient descent. Additionally, we can also use a more sophisticated cost function that takes into account the errors of the neighbouring qubits as well. This would lead to a more accurate calibration process. % @TODO: actually write the correct answer
+\textbf{Answer.} The snake optimizer routine is largely sequential in execution with respect to interdependent parameters and constraints. The optimizer is also inefficient with the model computation after every calibration. The vanilla algorithm does not consider local re-calibrations and performs system-wide calibrations which is very slow. Traversal for each thread has scope for optimization since heuristic based approach is not optimal for many situations and usually works the best for a small set of programs. The snake optimizer is also inefficient for architectures with many qubits and connections.\par
+The vanilla implementation can be improvised by extending the implementation to support local re-calibration. This can easily be done by \textit{deleting} the information about the region that has to be locally re-calibrated from $P^*$ and executing the snake optimizer algorithm. If we want to improve the runtime by compromising on the calibration accuracy, we can also get rid of some constraints from $R_P^{d_R}$ when performing calibration of a single element. Additionally, we can also optimize the runtime of the optimizer by caching information that can be reused with little to none modifications, such as $P_g^{d_P}, R_P^{d_R}, \mathsf{model}$.
