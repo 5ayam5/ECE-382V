@@ -27,7 +27,7 @@ Quantum systems are frequently calibrated to enable high fidelity quantum gate a
 \tcbline{}
 
 \begin{question}
-    Most device providers opt for localized recalibrations as opposed to full-system calibrations. Why? How does this impact the “performance” of the system?
+    Most device providers opt for localized recalibrations as opposed to full-system calibrations. Why? How does this impact the ``performance'' of the system?
 \end{question}
 \textbf{Answer.} A full-system recalibration will be computationally much heavier than a localized recalibration. Additionally, we will have to perform a full-system recalibration at the required frequency of the most error-prone regions. This would lead to useless computation for those qubits that do not require calibrations that frequently. Performing a calibration taking all qubits (and their neighbours) into account would also lead to a more complex calibration process since it would consider a larger set of parameters. Instead, a localized calibration process will be computationally more efficient even if we consider the computation done per qubit (since we assume that the parameters of the qubits outside the neighbourhood are fixed). Localized calibration also allows for computation to take place parallelly elsewhere in the system and this leads to reduced system time and by extension, reduced decoherence errors.
 
