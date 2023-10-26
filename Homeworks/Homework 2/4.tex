@@ -1,0 +1,30 @@
+\begin{question}
+    What are the potential benefits of variational quantum algorithms? What are some of their key drawbacks?
+\end{question}
+\textbf{Answer.} Variational Quantum Algorithms (VQAs) offer heuristic-based speed-ups over the classical approach and thus have the potential to solve NP-hard problems faster than the classical computers. However, in the current state of quantum computers, these algorithms are very noisy to run and even on the best computers currently available commercially, they can be run only for inputs of very small sizes. Additionally, finding the optimal solvers for the quantum algorithms is an ongoing research problem which would need to be improved or perfect before we can use VQAs to solve real-world problems. However, VQAs are still the best path forward to prove quantum `supremacy' on noisy system since they can handle small amounts of noise and do not require the exact output distribution to be obtained. Another concern is that there is no theoretical guarantee that these algorithms would be faster on a quantum computer since it is possible that a classical algorithm is designed in the future that beats the quantum advantage obtained via VQAs.
+
+\tcbline{}
+
+\begin{question}
+    How can you use application specific properties to reduce the impact of hardware errors in variation quantum algorithms?
+\end{question}
+\textbf{Answer.} Since the order of the \texttt{CPHASE} gates does not change the optimal result, we have increased opportunities for instruction reordering which would lead to increased parallel execution and reduced circuit depths. We can also have a low-overhead circuit cutting by `freezing' (classically solving) the `hotspot' nodes since these nodes would have increased error rates which would reduce the quality of the solution.
+
+\tcbline{}
+
+\begin{question}
+    Google uses three types of graphs to study the performance of QAOA on real systems. What is the specific reason to choose the exact kinds of graphs chosen for this study?
+\end{question}
+\textbf{Answer.} The three different kinds of graphs used are as follows:
+\begin{enumerate}
+    \item \textul{Hardware Grid}: This graph models the hardware connectivity in the graph. This leads to the best performance on physical systems since the only multi-qubit gates are between adjacent nodes and hence there is no requirement of \texttt{SWAP} gate insertion. Google was able to run QAOA on $23$ qubits on the Sycamore processor using this graph.
+    \item \textul{3-regular Graphs}: These graphs have a theoretical guarantee on the quality of solution. Thus, we can easily compare the result obtained from the noisy algorithm with the optimal solution obtained from simulating the QAOA algorithm to see how noise affects the performance. Google was able to run QAOA on $14$ qubits on the Sycamore processor using this graph.
+    \item \textul{Full Connected Graphs}: These graphs represent the worst-case scenario for QAOA since the number of edges is maximum and hence the number of \texttt{SWAP} gates required to map the graph to the hardware connectivity is maximum. Google was able to run QAOA on $11$ qubits on the Sycamore processor using this graph.
+\end{enumerate}
+
+\tcbline{}
+
+\begin{question}
+    IBM recently introduced the Qiskit Runtime environment to run variational quantum algorithms. What are the benefits of this approach? What are the drawbacks?
+\end{question}
+\textbf{Answer.} The integrated runtime environment allows for faster interaction between the quantum solver and the classical optimizer which makes the overall process faster. This also allows for application-aware optimization possibilities on both the device side and the application size. Additionally, based on the device and the application, the optimizer can make more intelligent decisions which would improve the results of the solver. The major drawback of this approach is that the flexibility from the programmer is reduced since the programmer has to send in the circuit and the solver at once and cannot make any changes to the circuit based on the results of the solver. This also makes it harder to debug the circuit since the programmer cannot see the intermediate results of the solver and hence cannot make any changes to the circuit based on the intermediate results. Additionally, there are security concerns with the optimizer running on the cloud rather than locally on the user's machine.

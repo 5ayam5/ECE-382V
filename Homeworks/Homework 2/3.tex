@@ -1,0 +1,25 @@
+\begin{question}
+    Why are idle errors important to eliminate at the application-level?
+\end{question}
+\textbf{Answer.} Idle errors can be a major source of error in the circuit since they increase exponentially with the idle time. Therefore, it is crucial to minimize the idle time of the qubits and this can be somewhat easily done by Dynamical Decoupling.
+
+\tcbline{}
+
+\begin{question}
+    What are the trade-offs involved in concurrent CNOT scheduling?
+\end{question}
+\textbf{Answer.} Executing \texttt{CNOT} gates concurrently can reduce the circuit depth and hence reduce the total decoherence error and the execution time of the circuit. However, this leads to increased crosstalk errors which is also a significant source of error in NISQ-era quantum computers.
+
+\tcbline{}
+
+\begin{question}
+    What are the trade-offs in incorporating device-level techniques for reducing idle errors naively at the application-level?
+\end{question}
+\textbf{Answer.} Performing Dynamical Decoupling cannot be done naively for all the qubits since different qubits have different error rates. It is only beneficial to perform DD on those qubits which actually reduce the total circuit error. This decision also depends on the device and the system drift and hence cannot be globally applied at the application-level and transported to any device. Additionally, performing DD can also lead to increased circuit depth and can potentially increase the crosstalk error (but not by much since DD involves single-qubit gates).
+
+\tcbline{}
+
+\begin{question}
+    Is characterization the right approach to reduce crosstalk/idle errors? Why or why not?
+\end{question}
+\textbf{Answer.} Since crosstalk and idle errors are device-specific, we need a way to be able to characterize the device and then decide on how to reduce the errors. The drawback of this approach is that the error mitigation techniques cannot be generalized at the application level and need to be associated with each device for each application. We would also need to re-characterize the optimized circuit if we want to run the application at a later time in the future since device drifts would change the characterization. Therefore, characterization is required, but the current characterization methods might not be the best ones as quantum computers scale in size and usage.

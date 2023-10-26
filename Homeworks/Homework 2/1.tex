@@ -1,0 +1,39 @@
+\begin{question}
+    What are the benefits of instruction reordering in quantum programs?
+\end{question}
+\textbf{Answer.} Instruction reordering can lead to reduced number of swaps and hence an overall reduced circuit depth in the final circuit that is obtained after the entire compilation process. This also allows for increased possibilities of gate cancellation. Additionally, the reordered circuit might allow for more parallel computation that the original circuit which reduces the total error and the execution time of the entire circuit.
+
+\tcbline{}
+
+\begin{question}
+    Compilers perform gate cancellations in two passes, before and after routing. Why?
+\end{question}
+\textbf{Answer.} The \texttt{SWAP} gates introduced during the routing process introduce multiple possible gate cancellation opportunities. However, we still need to perform gate cancellation before routing since this reduces the circuit depth on which routing will be performed thus reducing the time taken by the routing algorithm (since it has to operate on a smaller input size). This can allow the routing algorithm to make more intelligent decisions which might have been impossible if the number of gates in the input were higher.
+
+\tcbline{}
+
+\begin{question}
+    Gate nativization is a crucial step in program compilation. What are the trade-offs in nativization on systems that offer multiple native gates to decompose a high-level instruction? What are the drawbacks of the gate selection method proposed in the paper ``The Imitation Game''?
+\end{question}
+\textbf{Answer.}
+
+\textul{Advantages}: Different qubits might have different error rates for the possible native gates and hence it might be better to use a certain native set for one qubit (or a pair of qubits) and another for a different qubit (or a pair of qubits). Different native gates might also have different execution times, and sometimes it might be possible to squeeze in a native gate only from the subset of the possible native gates between two other gate operations since they take lesser time than the other native gates.
+\bigskip
+
+\textul{Disadvantages}: Choosing the best native gate for each operation will require us to search from exponentially many possibilities which is computationally impossible for the compiler to do in a small amount of time. Making wrong or bad decisions can potentially hurt the performance more than just choosing from the default native gate set.
+\bigskip
+
+\textul{Drawbacks in ``The Imitation Game''}:
+\begin{enumerate}
+    \item The algorithms considers a single native gate for each link and doesn't account for using different native gates for each gate in the circuit on the same link.
+    \item Since ANGEL is a greedy algorithm, it might get stuck in a local minimum and not be able to find the optimal solution.
+    \item Additionally, it doesn't scale well with the circuit size since simulating the circuit becomes harder. The limit of $20$ non-Clifford gates is suitable for small circuit sizes since the circuit can be simulated and will lead to a low-entropy output distribution. However, for larger circuits, the output distribution will still have a high entropy since $20$ non-Clifford circuits won't be enough to reduce the entropy and increasing the limit will make it harder to simulate the circuit.
+    \item Device drifts during ANGEL's execution can lead to incorrect results.
+\end{enumerate}
+
+\tcbline{}
+
+\begin{question}
+    Circuit cutting is an emerging error mitigation technique in NISQ-era. What are the overheads of circuit cutting? How can these overheads be reduced?
+\end{question}
+\textbf{Answer.} Circuit cutting can lead to large number of sub-circuits which does not scale well with the circuit size. The knitting algorithm also becomes more involved and increases exponentially with the number of cut circuits. The problem of deciding how, where and when to cut the circuit is also an open research problem. The circuit execution overheads can be reduced by executing the smaller circuits parallelly on the same machine. Additionally, to reduce the classical overheads, application-specific knitting can be performed to make the knitting algorithm more efficient. Also, in the NISQ-era, approximate knitting suffices since the final output distribution would be noisy anyway. It is also possible to communicate the classical information between the runs of different sub-circuits to reduce the classical overheads.

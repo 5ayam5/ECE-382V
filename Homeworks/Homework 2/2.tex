@@ -1,0 +1,32 @@
+\begin{question}
+    Why are measurement errors hard to eliminate at the device-level?
+\end{question}
+\textbf{Answer.} Measurements are very sensitive to noise at all the different stages of the measurement process. At the lower levels, the noise is due to device imperfections (since maintaining low temperatures and prevent interference from the environment is hard). Being able to efficiently distinguish between the two states at the software level is a very sensitive process because of the accumulated noise and thus the classifier needs to be very accurate which is hard to achieve.
+
+\tcbline{}
+
+\begin{question}
+    What are the drawbacks of the matrix-based measurement error mitigation techniques?
+\end{question}
+\textbf{Answer.} The matrix-based measurement error mitigation techniques require a matrix whose size increases exponentially with the number of qubits since we require a noise matrix which has dimensions $2^n\times 2^n$ (where $n$ is the number of qubits). Even for small input sizes, the problem of deciding on how to compute the noise matrix is an open problem. One needs to decide on how to characterize the noise and should be able to capture the system drifts at the right time.
+
+\tcbline{}
+
+\begin{question}
+    What are the challenges in state-transformation-based measurement error mitigation? How to overcome these challenges?
+\end{question}
+\textbf{Answer.} Deciding on when to insert \texttt{X} gates (search space) scales exponentially with the input size. Since simulating the circuit is not computationally feasible for larger inputs, it is also impossible to compare the performance of different circuit choices in the search space. One way of solving these issues is by constructing two circuits -- the original circuit and another which has an \texttt{X} gate on all qubits. The output distributions can then be classically processed to obtain the resultant distribution.
+
+\tcbline{}
+
+\begin{question}
+    JigSaw is a measurement error mitigation technique. It uses a recompilation step to measure the program qubits on physical qubits with the lowest measurement errors. How can you reduce this recompilation overhead?
+\end{question}
+\textbf{Answer.} The recompilation overhead can be reduced by adding a threshold on the measurement error rate, i.e., the recompilation only happens if the measurement error rate for the qubits on which measurement is to be performed exceeds the threshold. Otherwise, we proceed with the same compiled circuit. This will significantly reduce the overhead since we can also intelligently compile the circuit giving preference to the qubits that have a lower readout error. Alternatively, we can compile a single circuit and define a set of qubits as the `measure' qubits. We can then introduce \texttt{SWAP} gates at the very end to bring the qubits to be measured to these `measure' qubits.
+
+\tcbline{}
+
+\begin{question}
+    What are the trade-offs in designing measurement classifiers for quantum systems?
+\end{question}
+\textbf{Answer.} Most measurement classifiers for quantum systems use Machine Learning. This leads to either a huge hardware overhead if we want the results of the classifier with low latency (IBM's classifier) or a huge latency and an increased software overhead if we want to reduce the hardware overhead (full neural network).
