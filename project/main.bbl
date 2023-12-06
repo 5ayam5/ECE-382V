@@ -30,30 +30,10 @@ Yongshan Ding, Xin-Chuan Wu, Adam Holmes, Ash Wiseth, Diana Franklin, Margaret M
 \newblock Square: Strategic quantum ancilla reuse for modular quantum programs via cost-effective uncomputation.
 \newblock In {\em 2020 ACM/IEEE 47th Annual International Symposium on Computer Architecture (ISCA)}, pages 570--583. IEEE, 2020.
 
-\bibitem{eastin2009restrictions}
-Bryan Eastin and Emanuel Knill.
-\newblock Restrictions on transversal encoded quantum gate sets.
-\newblock {\em Physical review letters}, 102(11):110502, 2009.
-
-\bibitem{fowler2018low}
-Austin~G Fowler and Craig Gidney.
-\newblock Low overhead quantum computation using lattice surgery.
-\newblock {\em arXiv preprint arXiv:1808.06709}, 2018.
-
-\bibitem{Fowler_2012}
-Austin~G. Fowler, Matteo Mariantoni, John~M. Martinis, and Andrew~N. Cleland.
-\newblock Surface codes: Towards practical large-scale quantum computation.
-\newblock {\em Physical Review A}, 86(3), sep 2012.
-
 \bibitem{gidney2021factor}
 Craig Gidney and Martin Eker{\aa}.
 \newblock How to factor 2048 bit rsa integers in 8 hours using 20 million noisy qubits.
 \newblock {\em Quantum}, 5:433, 2021.
-
-\bibitem{higgott2022pymatching}
-Oscar Higgott.
-\newblock Pymatching: A python package for decoding quantum codes with minimum-weight perfect matching.
-\newblock {\em ACM Transactions on Quantum Computing}, 3(3):1--16, 2022.
 
 \bibitem{horsman2012surface}
 Dominic Horsman, Austin~G Fowler, Simon Devitt, and Rodney Van~Meter.
@@ -97,11 +77,6 @@ Daniel Litinski.
 Gokul~Subramanian Ravi, Jonathan~M Baker, Arash Fayyazi, Sophia~Fuhui Lin, Ali Javadi-Abhari, Massoud Pedram, and Frederic~T Chong.
 \newblock Better than worst-case decoding for quantum error correction.
 \newblock In {\em Proceedings of the 28th ACM International Conference on Architectural Support for Programming Languages and Operating Systems, Volume 2}, pages 88--102, 2023.
-
-\bibitem{ross2014optimal}
-Neil~J Ross and Peter Selinger.
-\newblock Optimal ancilla-free clifford+ t approximation of z-rotations.
-\newblock {\em arXiv preprint arXiv:1403.2975}, 2014.
 
 \bibitem{viszlai2023architecture}
 Joshua Viszlai, Sophia~Fuhui Lin, Siddharth Dangwal, Jonathan~M Baker, and Frederic~T Chong.

@@ -1,28 +1,28 @@
 \section{Background}
-\begin{figure}
-    \centering
-    \includesvg[width=0.5\columnwidth]{figs/surface_code.svg}
-    \caption{A surface code patch with $d = 3$. Data (black) interact with ancilla (white) to extract syndrome information used to decode errors. The rate at which these syndromes can be measured depends on the system and determines the duration of a single \textit{code cycle} which influences how much time can be used for realtime recompilation.}
-    \label{fig:surface_code}
-\end{figure}
-\subsection{Quantum Error Correction}
-% Very basics of QEC
-% What are logical qubits / what are logical operations
-In \textit{physical} quantum computing, physical qubits are linear superpositions of basis states as $\ket{\psi} = \alpha\ket{0} + \beta\ket{1}$. In contrast, many physical qubits can be used to create a \textit{logical} qubit which encodes information as superpositions of a logical basis $\overline{\ket{\psi}} = \alpha\overline{\ket{0}} + \beta\overline{\ket{1}}$. Quantum systems are inherently prone to noise due to the interaction between the physical object used for the qubit and the surrounding environment (e.g. ions or atoms manipulated via lasers). The frequency of errors in physical systems is nontrivial, often occurring on the order of 1 in every 100 to 1000 operations. This is far from necessary error rates for large-scale computation. By encoding information into logical qubits, error rates can be suppressed arbitrarily corresponding to the code's distance at the cost of additional space. There are a large variety of potential quantum error correcting codes. For example, one popular code is the Surface Code which has a \textit{threshold} of about 1\% \cite{fowler2018low}, the physical error rate below which increasing the code's distance results in exponential reduction in error rates. 
+% \begin{figure}
+%     \centering
+%     \includesvg[width=0.5\columnwidth]{figs/surface_code.svg}
+%     \caption{A surface code patch with $d = 3$. Data (black) interact with ancilla (white) to extract syndrome information used to decode errors. The rate at which these syndromes can be measured depends on the system and determines the duration of a single \textit{code cycle} which influences how much time can be used for realtime recompilation.}
+%     \label{fig:surface_code}
+% \end{figure}
+% \subsection{Quantum Error Correction}
+% % Very basics of QEC
+% % What are logical qubits / what are logical operations
+% In \textit{physical} quantum computing, physical qubits are linear superpositions of basis states as $\ket{\psi} = \alpha\ket{0} + \beta\ket{1}$. In contrast, many physical qubits can be used to create a \textit{logical} qubit which encodes information as superpositions of a logical basis $\overline{\ket{\psi}} = \alpha\overline{\ket{0}} + \beta\overline{\ket{1}}$. Quantum systems are inherently prone to noise due to the interaction between the physical object used for the qubit and the surrounding environment (e.g. ions or atoms manipulated via lasers). The frequency of errors in physical systems is nontrivial, often occurring on the order of 1 in every 100 to 1000 operations. This is far from necessary error rates for large-scale computation. By encoding information into logical qubits, error rates can be suppressed arbitrarily corresponding to the code's distance at the cost of additional space. There are a large variety of potential quantum error correcting codes. For example, one popular code is the Surface Code which has a \textit{threshold} of about 1\% \cite{fowler2018low}, the physical error rate below which increasing the code's distance results in exponential reduction in error rates. 
 
-It is important to distinguish the physical error rate of the underlying physical qubits versus the logical error rate of the encoded system. During the maintenance of the logical quantum state which can't be measured exactly without destroying the state, we carefully extract some information from the system, called syndromes, which are passed to a decoder in order to determine what physical errors have happened either due to idling or due to the execution of gates. The processes of gathering syndromes and decoding, while important, can often be abstracted away from the consideration of the total logical system because they are performed repeatedly and without any modification over the course of the entire program.
+% It is important to distinguish the physical error rate of the underlying physical qubits versus the logical error rate of the encoded system. During the maintenance of the logical quantum state which can't be measured exactly without destroying the state, we carefully extract some information from the system, called syndromes, which are passed to a decoder in order to determine what physical errors have happened either due to idling or due to the execution of gates. The processes of gathering syndromes and decoding, while important, can often be abstracted away from the consideration of the total logical system because they are performed repeatedly and without any modification over the course of the entire program.
 
-Logical quantum information can similarly be manipulated like physical information. To manipulate physical quantum systems, gates are performed which modify the coefficients $\alpha$ and $\beta$. For some codes, logical operations are simply a collection of physical gates on its constituent physical qubits. For example, a \textit{transversal} logical X gate might be performed by simply performing physical X gates on every data qubit. Some codes have more exotic logical operators, which although they consist of some collection of physical operations, are not as straightforward as these transversal gates. 
+% Logical quantum information can similarly be manipulated like physical information. To manipulate physical quantum systems, gates are performed which modify the coefficients $\alpha$ and $\beta$. For some codes, logical operations are simply a collection of physical gates on its constituent physical qubits. For example, a \textit{transversal} logical X gate might be performed by simply performing physical X gates on every data qubit. Some codes have more exotic logical operators, which although they consist of some collection of physical operations, are not as straightforward as these transversal gates. 
 
 \subsection{Surface Codes}
 
 % Specifics of this code that are relevant to this work
 % E.g. dxd patches, X edge, Z edges
 % Lattice Surgery Operations - Pauli Product Measurements / long-range CNOTs
-In this work, we are primarily focused on Surface Codes a type of topological code with many attractive properties for available or soon-to-be available hardware platforms. Specifically, surface codes require only nearest neighbor connectivity between physical qubits, its parity checks require only 4 two qubit gates, it has a high threshold and it has well-studied decoders \cite{Fowler_2012, higgott2022pymatching}. Surface code architectures are also fairly well studied with the most popular being the rotated surface code with lattice surgery operations. In it's most simple form, the rotated surface code is a $d \times d$ patch of qubits with $O(d^2)$ data qubits and ancilla qubits, where $d$ is the distance of the code. The patch is composed of $X$ checks and $Z$ checks which collect syndromes about $X$ and $Z$ errors, respectively. The boundaries of the square patch are either $X$ or $Z$ edges which determine how the logical qubit can interact with other qubits. Figure~\ref{fig:surface_code} shows a logical qubit surface code for $d=3$.
+% In this work, we are primarily focused on Surface Codes a type of topological code with many attractive properties for available or soon-to-be available hardware platforms. Specifically, surface codes require only nearest neighbor connectivity between physical qubits, its parity checks require only 4 two qubit gates, it has a high threshold and it has well-studied decoders \cite{Fowler_2012, higgott2022pymatching}. Surface code architectures are also fairly well studied with the most popular being the rotated surface code with lattice surgery operations. In it's most simple form, the rotated surface code is a $d \times d$ patch of qubits with $O(d^2)$ data qubits and ancilla qubits, where $d$ is the distance of the code. The patch is composed of $X$ checks and $Z$ checks which collect syndromes about $X$ and $Z$ errors, respectively. The boundaries of the square patch are either $X$ or $Z$ edges which determine how the logical qubit can interact with other qubits. Figure~\ref{fig:surface_code} shows a logical qubit surface code for $d=3$.
 
 
-Surface code architectures are simply a fabric of many $d \times d$ sized tiles where program qubits are mapped onto these tiles. Tiles can be deformed fairly arbitrarily, so long as the distance of the shortest path between any pair of corresponding edges (e.g. X edge to another X edge) is always at least $d$. Deformation, amongst other operations, is one of many available operations in a surface code architecture and can be used to transport information from one region of the device to another in order to interact with other distance logical qubits. In order to do so, the grid of tiles must allocate some number of logical \textit{ancilla} which are virtually empty. In order to interact two logical qubits, we can employ so-called lattice surgery which, using an intermediate ancilla. For a more complete coverage of these operations, we refer to \cite{litinski2019game}.
+% Surface code architectures are simply a fabric of many $d \times d$ sized tiles where program qubits are mapped onto these tiles. Tiles can be deformed fairly arbitrarily, so long as the distance of the shortest path between any pair of corresponding edges (e.g. X edge to another X edge) is always at least $d$. Deformation, amongst other operations, is one of many available operations in a surface code architecture and can be used to transport information from one region of the device to another in order to interact with other distance logical qubits. In order to do so, the grid of tiles must allocate some number of logical \textit{ancilla} which are virtually empty. In order to interact two logical qubits, we can employ so-called lattice surgery which, using an intermediate ancilla. For a more complete coverage of these operations, we refer to \cite{litinski2019game}.
 
 \begin{figure*}
     \centering
@@ -60,8 +60,8 @@ In this work, we want to clearly distinguish the compilation of programs at the 
 \subsection{Clifford + T, Synthesis}
 All quantum error correction codes do \textit{not} support a set of universal set of logical operators. Codes admit a partially complete set of gates; for example, surface codes can perform the Clifford gates easily which includes $\langle H, S, X, Z, CNOT \rangle$, the set generated by these gates. However, Cliffords are not universal and need to be augmented by some additional non-Clifford gate. The two most typical are T or Toffoli (CCX) gates and all gates in the input program must be synthesized into the gate sets Clifford+T or Clifford+CCX. For example, if an input program contains $Rz(\theta)$ rotations they must be decomposed into a finite sequence of $\{H, S, T\}$ as a function of approximation precision. These sequences can often take up the bulk of large-scale programs. For example, precision on the order of $10^{-8}$ or smaller is necessary and each require hundreds if not thousands of gates. Because $T$ is not native, it must be prepared remotely which requires a large amount of space and time to prepare.
 
-\subsection{Resource State Distillation}
-In order to make gate sets for quantum error correction codes, additional resource states (for example $\ket{T}$ or T states which can be used to perform logical T gates via teleportation) are prepared remotely in a different code which does admit a transversal implementation, for example the Quantum Reed Muller codes. The preparation of these states, however, can fail and are prepared with some fixed logical error rate which is different from the logical error rate of the base code. However, through a process of distillation more error prone states can be used to generate lower logical error rate versions. Resource states are usually prepared remotely in factories and consumed on demand by the program. The total space-time cost of factory distillation in some estimates can take upwards of 90\% of the total space-time volume of the program's execution. Alternatives to this paradigm could reduce this overhead tremendously.
+% \subsection{Resource State Distillation}
+% In order to make gate sets for quantum error correction codes, additional resource states (for example $\ket{T}$ or T states which can be used to perform logical T gates via teleportation) are prepared remotely in a different code which does admit a transversal implementation, for example the Quantum Reed Muller codes. The preparation of these states, however, can fail and are prepared with some fixed logical error rate which is different from the logical error rate of the base code. However, through a process of distillation more error prone states can be used to generate lower logical error rate versions. Resource states are usually prepared remotely in factories and consumed on demand by the program. The total space-time cost of factory distillation in some estimates can take upwards of 90\% of the total space-time volume of the program's execution. Alternatives to this paradigm could reduce this overhead tremendously.
 
 \section{Related Work}\label{section:relatedwork}
 % \subsection{Small Angle Rotations}\label{section:smallanglerotations}
@@ -70,19 +70,19 @@ In order to make gate sets for quantum error correction codes, additional resour
     \centering
     \begin{subfigure}{0.24\textwidth}
         \centering
-        \includesvg[width=\linewidth]{figs/regular_star.svg}
+        \includesvg[width=0.9\linewidth]{figs/regular_star.svg}
     \end{subfigure}
     \begin{subfigure}{0.24\textwidth}
         \centering
-        \includesvg[width=\linewidth]{figs/compact_star.svg}
+        \includesvg[width=0.9\linewidth]{figs/compact_star.svg}
     \end{subfigure}
     \begin{subfigure}{0.24\textwidth}
         \centering
-        \includesvg[width=\linewidth]{figs/compressed_star.svg}
+        \includesvg[width=0.9\linewidth]{figs/compressed_star.svg}
     \end{subfigure}
     \begin{subfigure}{0.24\textwidth}
         \centering
-        \includesvg[width=\linewidth]{figs/mixed_grid.svg}
+        \includesvg[width=0.9\linewidth]{figs/mixed_grid.svg}
     \end{subfigure}
     \caption{Different patches proposed in the STAR architecture and the grid on the right shows how we `insert' the compact and compressed patches into a 2D grid of regular STAR patches. The different colours show the regular STAR patch with the darker colour indicating the data qubit and the lighter colours indicating ancilla qubits. The patches with red outline are the compact and compressed patches.}
     \label{fig:star}
@@ -91,7 +91,7 @@ Recent works \cite{akahoshi2023partially, ding2018magic} have proposed fault-tol
 
 \begin{figure}
     \centering
-    \includesvg[width=0.67\columnwidth]{figs/parallel_prepare.svg}
+    \includesvg[width=0.6\columnwidth]{figs/parallel_prepare.svg}
     \caption{Parallel preparation of the $\ket{m_\theta}$ state within a surface code patch of distance $5$}
     \label{fig:parallel_prepare}
 \end{figure}
