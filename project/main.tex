@@ -1,0 +1,83 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Template for ASPLOS papers.
+%
+% History:
+% 
+% ASPLOS originally used jpaper.cls for submission but required acmart.cls for the
+% final camera-ready version. To avoid a change in format, starting ASPLOS 2024 Fall 
+% cycle, both the submission and the camera-ready versions started using acmart.cls.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% use the base acmart.cls version 1.92
+% use the sigplan proceeding template with the default 10 pt fonts
+% nonacm option removes ACM related text in the submission. 
+
+
+
+\documentclass[nonacm,sigplan]{acmart}
+
+\usepackage{amsmath,amsfonts}
+\usepackage{physics}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{svg}
+\usepackage{tikz}
+\usetikzlibrary{quantikz}
+\usepackage{caption}
+\usepackage{subcaption}
+
+% enables page numbers
+\settopmatter{printfolios=true}
+
+\begin{document}
+
+\title{Realtime Compilation for Continuous Angle Quantum Error Correction Architectures}
+
+%\author{...} % removed for anonymity
+
+\begin{abstract}
+Quantum error correction (QEC) is necessary to run large scale quantum programs. Regardless of error correcting code, hardware platform, or systems architecture, QEC systems are limited by the types of gates which they can perform efficiently. In order to make the base code's gate set universal, they typically rely on the production of a single type of resource state, commonly T, in a different code which is then distilled and injected into the base code. This process is neither space nor time efficient and can account for a large portion of the total execution time and physical qubit cost of any program. In order to circumvent this problem, alternatives have been proposed, such as the production of continuous angle rotation states \cite{akahoshi2023partially, ding2018magic}. These proposals are powerful because they not only enable localized resource generation but also can potentially reduce total space requirements. 
+
+However, the production of these states is non-deterministic and can require many repetitions in order to obtain the desired resource. The original proposals suggest architectures which do not actively account for realtime management of its resources to minimize total execution time. Without this, static compilation of programs to these systems will be unnecessarily expensive. In this work, we propose a realtime compilation of programs to these continuous angle systems and a generalized resource sharing architecture which actively minimizes total execution time based on expected production rates. To do so, we repeatedly redistribute resources on-demand which depending on the underlying hardware can cause excessive classical control overhead. We further address this by dynamically selecting the frequency of recompilation. Our compiler and architecture improves over the baseline proposals by an average of $4.5\times$.
+\end{abstract}
+
+\maketitle % should come after the abstract
+\pagestyle{plain} % should come right after \maketitle
+
+\input{text/01intro}
+\input{text/02background}
+\input{text/03}
+
+% \section{Introduction}
+% TODO: briefly talk about how rotation gates approach is efficient and why non-determinism leads to the requirement for a dynamic scheduler (compiler?).
+
+% \section{Related Work (and Background)}
+% TODO: include the related work (STAR architecture, etc.) and the background (quantum computing, etc.)
+
+% \section{Problem and Motivation}
+% TODO: expand on the introduction and explain about the issues with static compilation (by showing numbers?)
+
+% \section{Optimal Scheduling/Compilation}
+% TODO: discuss the best approach, i.e., the approach with MST (also include small theoretical proofs of correctness?)
+
+% \section{Non-Exact but Faster Design Decisions (TODO: better title)}
+% TODO: discuss the trade-offs and why they still work
+
+% \section{Performance Evaluation}
+% TODO: describe the experimental setup and show numbers
+
+% \section{Future Work}
+% TODO: talk about the future work
+
+% \section{Conclusion}
+% TODO: summarize the paper and talk about future work
+
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}
+

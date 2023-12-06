@@ -1,0 +1,121 @@
+\begin{thebibliography}{10}
+
+\bibitem{akahoshi2023partially}
+Yutaro Akahoshi, Kazunori Maruyama, Hirotaka Oshima, Shintaro Sato, and Keisuke Fujii.
+\newblock Partially fault-tolerant quantum computing architecture with error-corrected clifford gates and space-time efficient analog rotations.
+\newblock {\em arXiv preprint arXiv:2303.13181}, 2023.
+
+\bibitem{anderson2014fault}
+Jonas~T Anderson, Guillaume Duclos-Cianci, and David Poulin.
+\newblock Fault-tolerant conversion between the steane and reed-muller quantum codes.
+\newblock {\em Physical review letters}, 113(8):080501, 2014.
+
+\bibitem{bravyi2023high}
+Sergey Bravyi, Andrew~W Cross, Jay~M Gambetta, Dmitri Maslov, Patrick Rall, and Theodore~J Yoder.
+\newblock High-threshold and low-overhead fault-tolerant quantum memory.
+\newblock {\em arXiv preprint arXiv:2308.07915}, 2023.
+
+\bibitem{choi2023fault}
+Hyeongrak Choi, Frederic~T Chong, Dirk Englund, and Yongshan Ding.
+\newblock Fault tolerant non-clifford state preparation for arbitrary rotations.
+\newblock {\em arXiv preprint arXiv:2303.17380}, 2023.
+
+\bibitem{ding2018magic}
+Yongshan Ding, Adam Holmes, Ali Javadi-Abhari, Diana Franklin, Margaret Martonosi, and Frederic Chong.
+\newblock Magic-state functional units: Mapping and scheduling multi-level distillation circuits for fault-tolerant quantum architectures.
+\newblock In {\em 2018 51st Annual IEEE/ACM International Symposium on Microarchitecture (MICRO)}, pages 828--840. IEEE, 2018.
+
+\bibitem{ding2020square}
+Yongshan Ding, Xin-Chuan Wu, Adam Holmes, Ash Wiseth, Diana Franklin, Margaret Martonosi, and Frederic~T Chong.
+\newblock Square: Strategic quantum ancilla reuse for modular quantum programs via cost-effective uncomputation.
+\newblock In {\em 2020 ACM/IEEE 47th Annual International Symposium on Computer Architecture (ISCA)}, pages 570--583. IEEE, 2020.
+
+\bibitem{eastin2009restrictions}
+Bryan Eastin and Emanuel Knill.
+\newblock Restrictions on transversal encoded quantum gate sets.
+\newblock {\em Physical review letters}, 102(11):110502, 2009.
+
+\bibitem{fowler2018low}
+Austin~G Fowler and Craig Gidney.
+\newblock Low overhead quantum computation using lattice surgery.
+\newblock {\em arXiv preprint arXiv:1808.06709}, 2018.
+
+\bibitem{Fowler_2012}
+Austin~G. Fowler, Matteo Mariantoni, John~M. Martinis, and Andrew~N. Cleland.
+\newblock Surface codes: Towards practical large-scale quantum computation.
+\newblock {\em Physical Review A}, 86(3), sep 2012.
+
+\bibitem{gidney2021factor}
+Craig Gidney and Martin Eker{\aa}.
+\newblock How to factor 2048 bit rsa integers in 8 hours using 20 million noisy qubits.
+\newblock {\em Quantum}, 5:433, 2021.
+
+\bibitem{higgott2022pymatching}
+Oscar Higgott.
+\newblock Pymatching: A python package for decoding quantum codes with minimum-weight perfect matching.
+\newblock {\em ACM Transactions on Quantum Computing}, 3(3):1--16, 2022.
+
+\bibitem{horsman2012surface}
+Dominic Horsman, Austin~G Fowler, Simon Devitt, and Rodney Van~Meter.
+\newblock Surface code quantum computing by lattice surgery.
+\newblock {\em New Journal of Physics}, 14(12):123011, 2012.
+
+\bibitem{hua2021autobraid}
+Fei Hua, Yanhao Chen, Yuwei Jin, Chi Zhang, Ari Hayes, Youtao Zhang, and Eddy~Z Zhang.
+\newblock Autobraid: A framework for enabling efficient surface code communication in quantum computing.
+\newblock In {\em MICRO-54: 54th Annual IEEE/ACM International Symposium on Microarchitecture}, pages 925--936, 2021.
+
+\bibitem{kubica2018abcs}
+Aleksander~Marek Kubica.
+\newblock {\em The ABCs of the color code: A study of topological quantum codes as toy models for fault-tolerant quantum computation and quantum phases of matter}.
+\newblock PhD thesis, California Institute of Technology, 2018.
+
+\bibitem{leblond2023tiscc}
+Tyler LeBlond, Ryan~S Bennink, Justin~G Lietz, and Christopher~M Seck.
+\newblock Tiscc: A surface code compiler and resource estimator for trapped-ion processors.
+\newblock In {\em Proceedings of the SC'23 Workshops of The International Conference on High Performance Computing, Network, Storage, and Analysis}, pages 1426--1435, 2023.
+
+\bibitem{li2022qasmbench}
+Ang Li, Samuel Stein, Sriram Krishnamoorthy, and James Ang.
+\newblock Qasmbench: A low-level qasm benchmark suite for nisq evaluation and simulation, 2022.
+
+\bibitem{litinski2019game}
+Daniel Litinski.
+\newblock A game of surface codes: Large-scale quantum computing with lattice surgery.
+\newblock {\em Quantum}, 3:128, 2019.
+
+\bibitem{litinski2019magic}
+Daniel Litinski.
+\newblock Magic state distillation: Not as costly as you think.
+\newblock {\em Quantum}, 3:205, 2019.
+
+\bibitem{Qiskit}
+{Qiskit contributors}.
+\newblock Qiskit: An open-source framework for quantum computing, 2023.
+
+\bibitem{ravi2023better}
+Gokul~Subramanian Ravi, Jonathan~M Baker, Arash Fayyazi, Sophia~Fuhui Lin, Ali Javadi-Abhari, Massoud Pedram, and Frederic~T Chong.
+\newblock Better than worst-case decoding for quantum error correction.
+\newblock In {\em Proceedings of the 28th ACM International Conference on Architectural Support for Programming Languages and Operating Systems, Volume 2}, pages 88--102, 2023.
+
+\bibitem{ross2014optimal}
+Neil~J Ross and Peter Selinger.
+\newblock Optimal ancilla-free clifford+ t approximation of z-rotations.
+\newblock {\em arXiv preprint arXiv:1403.2975}, 2014.
+
+\bibitem{viszlai2023architecture}
+Joshua Viszlai, Sophia~Fuhui Lin, Siddharth Dangwal, Jonathan~M Baker, and Frederic~T Chong.
+\newblock An architecture for improved surface code connectivity in neutral atoms.
+\newblock {\em arXiv preprint arXiv:2309.13507}, 2023.
+
+\bibitem{wu2021mapping}
+Anbang Wu, Gushu Li, Hezi Zhang, Gian~Giacomo Guerreschi, Yufei Ding, and Yuan Xie.
+\newblock Mapping surface code to superconducting quantum processors.
+\newblock {\em arXiv preprint arXiv:2111.13729}, 2021.
+
+\bibitem{xu2023constant}
+Qian Xu, J~Ataides, Christopher~A Pattison, Nithin Raveendran, Dolev Bluvstein, Jonathan Wurtz, Bane Vasic, Mikhail~D Lukin, Liang Jiang, and Hengyun Zhou.
+\newblock Constant-overhead fault-tolerant quantum computation with reconfigurable atom arrays.
+\newblock {\em arXiv preprint arXiv:2308.08648}, 2023.
+
+\end{thebibliography}
